@@ -21,7 +21,7 @@ npm install
 SERVICE_FILE="/usr/lib/systemd/system/$APPLICATION_NAME.service"
 
 echo "[Unit]" > $SERVICE_FILE
-echo "Description=For $APPLICATION_NAME >> $SERVICE_FILE
+echo "Description=For $APPLICATION_NAME" >> $SERVICE_FILE
 echo "After=network.target" >> $SERVICE_FILE
 echo "" >> $SERVICE_FILE
 echo "[Service]" >> $SERVICE_FILE
