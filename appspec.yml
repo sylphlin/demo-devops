@@ -1,0 +1,50 @@
+version: 0.0
+
+os: linux
+
+files:
+  - source: /
+    destination: /var/www/nodejs/devops-demo/
+
+permissions:
+  - object: /var/www/nodejs/devops-demo/
+    pattern: "*"
+    owner: centos
+    group: centos
+    type:
+      - file
+      - directory
+
+  - object: /var/www/nodejs/devops-demo/bin/
+    pattern: "*"
+    owner: centos
+    group: centos
+    mode: 744
+    type:
+      - file
+
+hooks:
+  ApplicationStop:
+    - location: codedeploy_scripts/application_stop.sh
+      timeout: 60
+      runas: root
+
+  BeforeInstall:
+    - location: codedeploy_scripts/before_install.sh
+      timeout: 60
+      runas: root
+
+  AfterInstall:
+    - location: codedeploy_scripts/after_install.sh
+      timeout: 300
+      runas: root
+
+  ApplicationStart:
+    - location: codedeploy_scripts/application_start.sh
+      timeout: 60
+      runas: root
+
+  ValidateService:
+    - location: codedeploy_scripts/validate_service.sh
+      timeout: 60
+      runas: root
