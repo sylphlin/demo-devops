@@ -12,7 +12,7 @@ test:
 
 deployment:
   staging:
-    branch: development
+    branch: develop
     codedeploy:
       devops-demo:
         application_root: /
